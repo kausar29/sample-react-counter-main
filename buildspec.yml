@@ -12,10 +12,10 @@ phases:
       - echo "Logging in to Amazon ECR..."
       - aws --version
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 777513753288.dkr.ecr.$AWS_REGION.amazonaws.com
-      - REPOSITORY_URI=777513753288.dkr.ecr.us-east-1.amazonaws.com/sample-react-counter-main
+      - REPOSITORY_URI=777513753288.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO_NAME
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
-      - echo "Repo URI: $777513753288.dkr.ecr.us-east-1.amazonaws.com/sample-react-counter-main"
+      - echo "Repo URI: $REPOSITORY_URI"
       - echo "Image Tag: $IMAGE_TAG"
 
   build:

@@ -14,9 +14,9 @@ phases:
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 777513753288.dkr.ecr.$AWS_REGION.amazonaws.com
       - REPOSITORY_URI=777513753288.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO_NAME
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - if [ -z "$COMMIT_HASH" ]; then IMAGE_TAG="latest"; else IMAGE_TAG=$COMMIT_HASH; fi
-      - echo "Repo URI: $REPOSITORY_URI"
-      - echo "Image Tag: $IMAGE_TAG"
+      - IMAGE_TAG=$([ -z "$COMMIT_HASH" ] && echo "latest" || echo $COMMIT_HASH)
+      - echo "Repo URI=$REPOSITORY_URI"
+      - echo "Image Tag=$IMAGE_TAG"
 
   build:
     commands:

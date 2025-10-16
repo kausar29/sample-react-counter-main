@@ -2,8 +2,8 @@ version: 0.2
 
 env:
   variables:
-    IMAGE_REPO_NAME: "sample-react-counter-main"   # তোমার ECR repo নাম
-    AWS_REGION: "us-east-1"                        # তোমার region
+    IMAGE_REPO_NAME: "sample-react-counter-main"
+    AWS_REGION: "us-east-1"
     IMAGE_TAG: "latest"
 
 phases:

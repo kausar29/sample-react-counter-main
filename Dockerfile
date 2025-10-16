@@ -6,8 +6,8 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-### Stage 2: Serve with nginx
-FROM nginx:alpine
+### Stage 2: Serve with nginx (from AWS Public ECR)
+FROM public.ecr.aws/nginx/nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 8000
